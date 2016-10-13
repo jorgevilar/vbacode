@@ -1,0 +1,19 @@
+Dim strSQL As String
+Dim answer As String
+
+answer = MsgBox("Do you want to add it !", vbYesNo + vbDefaultButton2 + vbQuestion, "Not in List: " & NewData)
+
+If answer = vbYes Then
+
+strSQL = "INSERT INTO tblSourceTopics ([sources]) VALUES ('" & NewData & "');"
+DoCmd.SetWarnings False
+DoCmd.RunSQL strSQL
+DoCmd.SetWarnings True
+MsgBox "Added"
+
+Response = acDataErrAdded
+
+Else
+Response = acDataErrContinue
+End If
+
